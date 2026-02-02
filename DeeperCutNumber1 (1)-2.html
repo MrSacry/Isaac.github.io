@@ -7,6 +7,29 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 L.marker([51.5, -0.09]).addTo(map)
     .bindPopup('A pretty CSS popup.<br> Easily customizable.')
     .openPopup();
+<script>
+  // Center map on the United States
+  var map = L.map('map').setView([39.8283, -98.5795], 4);
+
+  // Basemap
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // --- Three US City Markers ---
+
+  // New York City
+  L.marker([40.7128, -74.0060]).addTo(map)
+      .bindPopup('<b>New York City</b><br>The Big Apple');
+
+  // Chicago
+  L.marker([41.8781, -87.6298]).addTo(map)
+      .bindPopup('<b>Chicago</b><br>The Windy City');
+
+  // Los Angeles
+  L.marker([34.0522, -118.2437]).addTo(map)
+      .bindPopup('<b>Los Angeles</b><br>City of Angels');
+</script>
 
 </body>
 </html>
