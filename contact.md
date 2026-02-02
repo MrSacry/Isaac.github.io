@@ -8,5 +8,5 @@ nav_order: 4
 You can reach me at:
 
 - 📧 isaacmiller3039@gmail.com  
-- 🌐 [GitHub](https://github.com/yourusername)  
+- 🌐 [GitHub](https://github.com/Isaac.github.io)  
 - 📍 Based in USA  
