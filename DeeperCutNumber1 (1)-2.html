@@ -1,52 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>Three US Cities Map</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<title>US Cities Map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
-  <style>
-    body { margin: 0; }
-    #map {
-      height: 100vh; /* makes map fill screen */
-      width: 100%;
-    }
-  </style>
+<style>
+  html, body { margin: 0; height: 100%; }
+  #map { height: 100%; width: 100%; }
+</style>
 </head>
 
 <body>
-
 <div id="map"></div>
 
-<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
-  // Create map centered on USA
-  var map = L.map('map').setView([39.8283, -98.5795], 4);
 
-  // Basemap layer
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
+var map = L.map('map').setView([39.8283, -98.5795], 4);
 
-  // --- City Markers ---
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-  // New York City
-  L.marker([40.7128, -74.0060]).addTo(map)
-      .bindPopup('<b>New York City</b><br>The Big Apple');
+// --- MARKERS YOU WERE MISSING ---
 
-  // Chicago
-  L.marker([41.8781, -87.6298]).addTo(map)
-      .bindPopup('<b>Chicago</b><br>The Windy City');
+L.marker([40.7128, -74.0060]).addTo(map)
+  .bindPopup('<b>New York City</b><br>The Big Apple');
 
-  // Los Angeles
-  L.marker([34.0522, -118.2437]).addTo(map)
-      .bindPopup('<b>Los Angeles</b><br>City of Angels');
+L.marker([41.8781, -87.6298]).addTo(map)
+  .bindPopup('<b>Chicago</b><br>The Windy City');
+
+L.marker([34.0522, -118.2437]).addTo(map)
+  .bindPopup('<b>Los Angeles</b><br>City of Angels');
+
 </script>
-
 </body>
 </html>
