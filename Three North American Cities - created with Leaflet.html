@@ -1,56 +1,37 @@
-<script src="https://unpkg.com/leaflet@2.0.0-alpha.1/dist/leaflet-global.js"></script>
-<script>
-    const map = new L.Map('map').setView([51.505, -0.09], 13);
-
-    const tiles = new L.TileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-</script>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Three North American Cities - created with Leaflet</title>
+    <title>Three North American Cities - Leaflet Map</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
     <style>
         #map {
             height: 400px;
-			width: 50%;
+            width: 50%;
         }
     </style>
 </head>
 <body>
     <div id="map"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        var map = L.map('map').setView([37.0902, -95.7129], 4); // Initial view centered on North America
+        // Create the map centered on North America
+        var map = L.map('map').setView([37.0902, -95.7129], 4);
 
+        // Add OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 18
         }).addTo(map);
 
+        // Add markers with popups
         var newYork = L.marker([40.7128, -74.0060]).addTo(map).bindPopup("New York City, USA");
         var losAngeles = L.marker([34.0522, -118.2437]).addTo(map).bindPopup("Los Angeles, USA");
         var toronto = L.marker([43.6532, -79.3832]).addTo(map).bindPopup("Toronto, Canada");
 
-        // Add a click event listener to the map to show the popup when a marker is clicked
-        map.on('click', function(e) {
-            // Hide all popups
-            map.eachLayer(function(layer) {
-                if (layer instanceof L.Popup) {
-                    layer.remove();
-                }
-            });
-
-            // Show the popup for the clicked marker
-            var marker = map.layerPointToContainerPoint(map.mouseEventToLayerPoint(e.originalEvent));
-            var layer = map.getLayerAtPixel(marker);
-            if (layer instanceof L.Marker) {
-                layer.openPopup();
-            }
-        });
+        // Optional: open a popup automatically
+        // newYork.openPopup();
     </script>
 </body>
 </html>
+
