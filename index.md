@@ -12,4 +12,4 @@ Use the links on the left (or top, depending on theme) to explore:
 - [About Me](about.md)
 - [Projects](projects.md)
 - [Contact](contact.md)
-- 
+- [Map](map.md)
