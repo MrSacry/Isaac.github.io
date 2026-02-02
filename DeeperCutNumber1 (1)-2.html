@@ -1,10 +1,13 @@
+<script src="https://unpkg.com/leaflet@2.0.0-alpha.1/dist/leaflet-global.js"></script>
 <script>
-<div id="map"></div>
+    const map = new L.Map('map').setView([51.505, -0.09], 13);
 
-<style>
-  html, body { margin: 0; height: 100%; }
-  #map { height: 100%; width: 100%; }
-</style>
+    const tiles = new L.TileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+</script>
+<script>
 
 // Create map centered on USA
 var map = L.map('map').setView([39.8283, -98.5795], 4);
@@ -26,8 +29,3 @@ L.marker([34.0522, -118.2437]).addTo(map)
   .bindPopup('<b>Los Angeles</b><br>City of Angels');
 
 </script>
-
-
-</script>
-</body>
-</html>
