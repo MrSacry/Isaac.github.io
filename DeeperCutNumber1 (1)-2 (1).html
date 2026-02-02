@@ -145,7 +145,7 @@ This div tag which we named 'mapid" has an ID, which means we will only be using
 
  <script> //This is where we do most of our work. This is for JS. Let's make a map in Leaflet!
 
-       var mymap = L.map('mapid').setView([51.505, -0.09], 13); 
+       var mymap = L.map('mapid').setView([40.3046, -75.5021], 15); 
         
 /*var mymap... saves what comes after the equal sign. Think about a var or variable as a 
      box. That box contains everything after the equals sign. The box has a name that we can refer to in the future. In this case we can refer the statement ' L.map('mapid').setView([51.505, -0.09], 13);' later in our program by simply invoking 'mymap'*/
@@ -185,18 +185,18 @@ var marker = L.marker([51.5, -0.09]).addTo(mymap);
   Lat/Lon argument (it's required to create the marker) and then we add it to the map - which we store with a variable. We are using a variable to a marker so we use it later if we want. Go to the documentation (Google Leaflet Documentation) and look up L.Marker. What kinds of things can we do with the marker?*/
         
 var circle = L.circle([51.508, -0.11], { //We can create a circle as well. The circle is different than the marker. You see that we have a radius option. More about options, properties, and values next week when we learn about objects. Manipulate some of these options and see how your circle changes. Note that it also has a lat lon argument. 
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
+color: 'green',      // any color name
+radius: 1200,        // bigger or smaller
+dashArray: '10,5'    // optional style change
+
 }).addTo(mymap);
 
 /*console.log(circle) */ 
         
 var polygon = L.polygon([ //How is a polygon different than a circle? Why do we have 3 lat lon arguments instead of just one? 
-    [51.509, -0.08], 
-    [51.503, -0.06],
-    [51.51, -0.047]
+      [40.3065, -75.5050],
+  [40.3020, -75.5080],
+  [40.3005, -75.5010]
 ]).addTo(mymap);
         
 marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();//example of html - b and br represent something - what? 
