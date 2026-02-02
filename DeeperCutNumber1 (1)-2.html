@@ -1,23 +1,35 @@
-<script src="https://unpkg.com/leaflet@2.0.0-alpha.1/dist/leaflet-global.js"></script>
-<script>
-    const map = new L.Map('map').setView([51.505, -0.09], 13);
+<!DOCTYPE html>
+<html>
+<head>
+    <title>US Cities Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Three US Cities</h1>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+//NOTE** This was the prompt for this map in Amazon Q Assistant:
+    //'Create code for creating a basic leaflet map with three United States cities - please include everything I need to run the program.'
 
-    const tiles = new L.TileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-</script>
-<script>
-var map = L.map('map').setView([39.8283, -98.5795], 4);
-L.tileLayer(https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
-L.marker([40.7128, -74.0060]).addTo(map)
-  .bindPopup('<b>New York City</b><br>The Big Apple');
 
-L.marker([41.8781, -87.6298]).addTo(map)
-  .bindPopup('<b>Chicago</b><br>The Windy City');
+        //Sets the view of the map (geographical center and zoom) with the given animation options. [This appears in leaflet documentation under Methods for modifying map state].
+        var map = L.map('map').setView([39.8283, -98.5795], 4);
+        
+        //Used to load and display tile layers on the map. Note that most tile servers require attribution. [This appears in leaflet documentation under TileLayer]. 
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-L.marker([34.0522, -118.2437]).addTo(map)
-  .bindPopup('<b>Los Angeles</b><br>City of Angels');
-
-</script>
+        //L.Marker is used to display clickable/draggable icons on the map. [This appears in leaflet documentation under Marker]. 
+        L.marker([40.7128, -74.0060]).addTo(map).bindPopup('New York City');
+        L.marker([34.0522, -118.2437]).addTo(map).bindPopup('Los Angeles');
+        L.marker([41.8781, -87.6298]).addTo(map).bindPopup('Chicago');
+    </script>
+</body>
+</html>
