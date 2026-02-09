@@ -1,4 +1,134 @@
-<iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=-78.20343017578126%2C39.257778150283364%2C-75.69854736328126%2C40.942564441333296&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?#map=9/40.105/-76.951">View Larger Map</a></small>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>PA Cities Leaflet Map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: Lato, sans-serif;
+            color: #001323;
+        }
+
+        header {
+            padding: 10px 10%;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto;
+        }
+
+        footer {
+            padding: 10px 10%;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Harrisburg & Lancaster, PA</h1>
+</header>
+
+<div id="map"></div>
+
+<footer>
+    <p>Leaflet Circle & Tooltip Example</p>
+</footer>
+
+<script>
+    // Create the Leaflet map
+    var mymap = L.map('map', {
+        center: [40.15, -76.6],
+        zoom: 8
+    });
+
+    // Blue-based basemap (CartoDB Positron)
+    // Leaflet Documentation: https://leafletjs.com/reference.html#tilelayer
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+    }).addTo(mymap);
+
+    // Harrisburg data object
+    var harrisburg = {
+        name: "Harrisburg",
+        latlng: [40.2732, -76.8867],
+        population: 50135
+    };
+
+    // Lancaster data object
+    var lancaster = {
+        name: "Lancaster",
+        latlng: [40.0379, -76.3055],
+        population: 58039
+    };
+
+    // Harrisburg Leaflet CIRCLE
+    // Leaflet Documentation: https://leafletjs.com/reference.html#circle
+    L.circle(harrisburg.latlng, {
+        color: "gold",        // outline
+        fillColor: "blue",    // fill
+        fillOpacity: 0.5,
+        radius: 3000
+    })
+    .bindTooltip(
+        "<b>name:</b> <i>" + harrisburg.name + "</i><br>" +
+        "<b>population:</b> <i>" + harrisburg.population + "</i>"
+    )
+    .addTo(mymap);
+
+    // Lancaster Leaflet CIRCLE
+    // Leaflet Documentation: https://leafletjs.com/reference.html#circle
+    L.circle(lancaster.latlng, {
+        color: "red",
+        fillColor: "blue",
+        fillOpacity: 0.5,
+        radius: 3000
+    })
+    .bindTooltip(
+        "<b>name:</b> <i>" + lancaster.name + "</i><br>" +
+        "<b>population:</b> <i>" + lancaster.population + "</i>"
+    )
+    .addTo(mymap);
+
+    /*
+    COMMENTED-OUT CODE (Assignment Requirement)
+    */
+
+    // L.circleMarker([40.2732, -76.8867]).addTo(mymap);
+    // Commented out because assignment requires L.circle, not circleMarker
+    // Leaflet Docs: https://leafletjs.com/reference.html#circlemarker
+
+    // marker.bindPopup("Example Popup");
+    // Commented out because tooltips are required instead of popups
+    // Leaflet Docs: https://leafletjs.com/reference.html#tooltip
+
+    // mymap.setZoom(10);
+    // Commented out to preserve initial zoom level
+    // Leaflet Docs: https://leafletjs.com/reference.html#map-setzoom
+
+</script>
+
 </body>
 </html>
-
