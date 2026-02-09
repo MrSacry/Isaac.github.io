@@ -1,189 +1,120 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="utf-8" />
+<title>City Distances to Philly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head> 
-    
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <meta charset=utf-8 />
-    <title>Deeper Cut #2</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-  crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-  integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-  crossorigin=""></script>
-
-    
-
-
-    <style>
-        
-         body {
-            margin: 0;
-            padding: 0;
-            background: whitesmoke;
-            font-family: Lato, sans-serif;
-            color: #0D0000;
-        }
-        header {
-            padding: 6px 10%;
-        }
-        h1 {
-            display: inline-block;
-            margin-right: 20px;
-            color: #001323;
-        }
-        h2 {
-            display: inline-block;
-            color: #001323;
-        }
-        h4 {
-            color: #FF0000;
-        }
-        #map {
-            width: 80%;
-            height: 540px;
-            margin: 10px auto;
-        }
-        footer {
-            padding: 6px 10%;
-            width: 80%;
-        }
-        p {
-            font-size: 1em;
-            color: #001323;
-        }
-    </style>
-    
-    
-
+<style>
+    body { margin:0; font-family: Arial, sans-serif; background: whitesmoke; }
+    #map { width: 80%; height: 550px; margin: 20px auto; }
+</style>
 </head>
 
 <body>
-    <header>
-        <h1>City Distances to Philly</h1>
 
-        
-    </header>
+<h2 style="text-align:center;">City Distances from Philadelphia</h2>
+<div id="map"></div>
 
-     <div id="map"></div> 
-    
-    
+<script>
 
-    <footer>
-        <p>x</p>
-    </footer>
+//////////////////////////
+// b) Map centered on cities
+//////////////////////////
+var map = L.map('map', {
+    center: [39.8, -77.5],
+    zoom: 7
+});
 
-    
-    <script>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-       var mymap = L.map('map',  { 
-          center: [40.2732, -76.8867],
-          zoom: 6
-      });
-        
-       var mapLink = 
-            '<a href="http://openstreetmap.org">OpenStreetMap</a>'; 
-       var tiles =     L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; ' + mapLink + ' Contributors',
-            maxZoom: 7,
-            })
-        tiles.addTo(mymap);  
+//////////////////////////
+// c) City objects
+//////////////////////////
+var newYork = {
+    name: "New York City",
+    latlng: [40.7128, -74.0060],
+    phillyDistance: 95
+};
 
-     var d = new Date()
-     var month = d.getMonth()
-     console.log(month);
-     
-     let season = ""
+var washington = {
+    name: "Washington DC",
+    latlng: [38.9072, -77.0369],
+    phillyDistance: 140
+};
 
-     if (month >= 0 && month <= 2) {
-    season = 'Winter';
-} 
-else if (month >= 3 && month <= 5) {
-    season = 'Spring';
-} 
-else if (month >= 6 && month <= 8) {
-    season = 'Summer';
-} 
-else if (month >= 9 && month <= 11) {
-    season = "Fall";
-}
-       console.log(season);
-        
-        
-     var newYork =  {
-         name: 'New York City',
-         latlng: [40.7128,-74.0060],
-         phillyDistance: 95
-         }  
-     
-     var nymarker = L.marker(newYork.latlng).addTo(mymap);
-     nymarker.bindPopup('<h4>in ' + newYork.name + ', which is ' + newYork.phillyDistance + ' miles away from Philadelphia, it is ' + season); 
-        
-     var washington = {
-         name: 'Washington DC',
-         latlng: [38.9072,-77.0369],
-         phillyDistance: 140
-     }
-     
-     var capitolIcon = L.icon({
-         iconUrl: 'https://www.pngmart.com/files/1/3D-Gold-Star-PNG-File.png',
-         iconSize: [75, 60],
-     })
-     
-     var washmarker = L.marker(washington.latlng, {icon: capitolIcon}).addTo(mymap);
-     washmarker.bindPopup('in ' + washington.name + ', which is ' + washington.phillyDistance + ' miles away from Philadelphia, it is ' + season); 
-     
-     var columbus = {
-         name: 'Columbus',
-         latlng: [39.9612,-82.9988],
-         phillyDistance: 470
-     } 
-        
-     var columbusmarker = L.marker(columbus.latlng).addTo(mymap);
-     columbusmarker.bindPopup('in ' + columbus.name + ', which is ' + columbus.phillyDistance + ' miles away from Philadelphia, it is ' + season); 
-     
-     
-           
-        
-     do {
-     var citySelect = prompt("Please type in \'New York\', \'DC\', or \'Columbus\'.")
-     
-     if (citySelect === "New York") {
-        nymarker.openPopup(); 
-     }
-     else if (citySelect === "DC")  {
-        washmarker.openPopup();
-     } 
-     else if (citySelect === "Columbus") {
-        columbusmarker.openPopup();  
-     }       
-         
-     } while (citySelect != "New York" && citySelect != "DC" && citySelect != "Columbus");     
-        
-     
+var columbus = {
+    name: "Columbus",
+    latlng: [39.9612, -82.9988],
+    phillyDistance: 470
+};
 
+//////////////////////////
+// e) Conditional season using Date
+//////////////////////////
+var month = new Date().getMonth();
+var season = "";
 
-//Create markers for 3 cities. Change the center and zoom to focus on these cities. These cities should be created from data organized into obects (as you see above in var class)
-        
-// The popup should have the name of the city and how far it is from Philadelphia. Please include this information as properties and values in the objects and reference them in the pop up with dot notation.
-                                          
-// // Use JS Math or a different JS Date Method to Create a Condition that determines what will popup for your cities. For example: You might want to have a popup that uses the month to determine the season. Your popup might look something like "In New York, which is 90 miles from Philly, it's winter" In this statement you will create an if/ else if statement to determine season and use dot notation from the objects to create the name of the city and how many miles it is from Philly. 
-        
-        
-// Complete everything above and complete the following tasks: 
-        
-    // Use a prompt and do/while statement to link user input to the popups in the map 
-    // For one of the cities change the color of the text in the popup to a color related to the city
-    // Give one of the cities an icon that represents the city (see the Leaflet Documentation)    
+if (month <= 2) season = "Winter";
+else if (month <= 5) season = "Spring";
+else if (month <= 8) season = "Summer";
+else season = "Fall";
 
-    </script>
-    
+//////////////////////////
+// h) Custom icon for DC
+//////////////////////////
+var dcIcon = L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+    iconSize: [40,40],
+    iconAnchor: [20,40]
+});
+
+//////////////////////////
+// a) Create markers
+//////////////////////////
+var nyMarker = L.marker(newYork.latlng).addTo(map);
+var dcMarker = L.marker(washington.latlng, {icon: dcIcon}).addTo(map);
+var colMarker = L.marker(columbus.latlng).addTo(map);
+
+//////////////////////////
+// d + g) Popups using dot notation
+//////////////////////////
+nyMarker.bindPopup(
+    '<p style="color:blue;">In ' + newYork.name +
+    ', which is ' + newYork.phillyDistance +
+    ' miles from Philadelphia, it is ' + season + '.</p>'
+);
+
+dcMarker.bindPopup(
+    'In ' + washington.name +
+    ', which is ' + washington.phillyDistance +
+    ' miles from Philadelphia, it is ' + season + '.'
+);
+
+colMarker.bindPopup(
+    'In ' + columbus.name +
+    ', which is ' + columbus.phillyDistance +
+    ' miles from Philadelphia, it is ' + season + '.'
+);
+
+//////////////////////////
+// f) Prompt + do/while
+//////////////////////////
+do {
+    var citySelect = prompt("Type: New York, DC, or Columbus").toLowerCase();
+
+    if (citySelect === "new york") nyMarker.openPopup();
+    else if (citySelect === "dc") dcMarker.openPopup();
+    else if (citySelect === "columbus") colMarker.openPopup();
+
+} while (citySelect !== "new york" && citySelect !== "dc" && citySelect !== "columbus");
+
+</script>
+
 </body>
-
 </html>
